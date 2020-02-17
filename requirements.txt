@@ -1,0 +1,2 @@
+PubChemPy==1.0.4
+requests==2.22.0

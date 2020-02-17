@@ -1,2 +1,10 @@
 # Any hidden folders
-.ipynb_checkpoints/
+.*/
+# .ipynb_checkpoints/
+
+__pycache__
+
+
+# 'dev' (development) folder
+dev/
+pka_lookup_condaenv/
