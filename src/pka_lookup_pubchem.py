@@ -34,6 +34,9 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
     if len(sys.argv) == 2 and sys.argv[1] in ['--debug=True', '--debug=true', '--debug', '-d']:
         debug = True
 
+    if debug:
+        print(f'In DEBUG mode: {debug}')
+
     # Identify lookup source (Pubchem in this case)
     lookup_source = 'Pubchem'
 
@@ -62,8 +65,17 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
                 if lookup:
                     cids.append(lookup[0])
                     # print(f'namespace from pubchem lookup is: {namespace}')
+        elif namespace == 'cas':
+            cids = pcp.get_cids(identifier, namespace='name')
         else:
             cids = pcp.get_cids(identifier, namespace=namespace)
+
+        if not cids:
+            lookup = pcp.get_cids(identifier, namespace='name')
+            if lookup:
+                cids.append(lookup[0])
+
+            # cids = pcp.get_cids(identifier, namespace=namespace)
             identifier_type = namespace
 
         # print(cids)
@@ -76,7 +88,7 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
 
             exact_match = True
 
-            # if namespace != 'smiles' and (identifier not in synonyms):
+            synonyms = []
             if identifier_type == 'cas':
                 # To double check if the CAS number is correct:
                 # using pubchem api, get a list of synonym. The result is a list of dict.
@@ -141,19 +153,23 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
                     'reference': original_source
                 }
             else:
-                raise RuntimeError('Not found in Pubchem.')
+                raise RuntimeError('pKa not found in Pubchem.')
+        
+        else: 
+            raise RuntimeError('Compound not found in Pubchem.')
 
-    except ValueError as error:
-        if debug:
-            traceback_str = ''.join(traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__))
-            print(traceback_str)
-        return {
-            'input': identifier,
-            'source': lookup_source,
-            'Pubchem CID': None,
-            'pka': None,
-            'reference': None
-        }
+    # except ValueError as error:
+    #     if debug:
+    #         traceback_str = ''.join(traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__))
+    #         print(traceback_str)
+    #     # return {
+    #     #     'input': identifier,
+    #     #     'source': lookup_source,
+    #     #     'Pubchem CID': None,
+    #     #     'pka': None,
+    #     #     'reference': None
+    #     # }
+    #     return None
 
     except Exception as error:
         if debug:
@@ -164,22 +180,26 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
         # print('\n\n(Optional): you can turn on debug mode (more error printing during structure search) using the following command:')
         # print('python src/pka_lookup_pubchem.py  --debug\n')
 
-        cid = cid or None
-        return {
-            'input': identifier,
-            'source': lookup_source,
-            'Pubchem CID': cid,
-            'pka': None,
-            'reference': None
-        }
+        # cid = cid or None
+        # return {
+        #     'input': identifier,
+        #     'source': lookup_source,
+        #     'Pubchem CID': cid,
+        #     'pka': None,
+        #     'reference': None
+        # }
+
+        return None
 
 
 if __name__ == "__main__":
-    cas_nr = '64-19-7'    # acetic acid   >>> pKa = 4.76 at 25 °C
+    # cas_nr = '64-19-7'    # acetic acid   >>> pKa = 4.76 at 25 °C
     # cas_nr = '75-75-2'    # methanesulfonic acid   >>> pKa = -1.86
-    # cas_nr = '2950-43-8'    # Hydroxylamine-O-sulfonic acid, no result
-
+    cas_nr = '2950-43-8'    # Hydroxylamine-O-sulfonic acid, no result
+    # cas_nr = '2687-12-9'
     # print(pka_lookup_pubchem(cas_nr))
+    print(pka_lookup_pubchem(cas_nr, 'cas'))
+
 
 
     # smiles_string = 'C1=CC(=CC=C1F)S'
@@ -199,4 +219,4 @@ if __name__ == "__main__":
     # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(inchi_string, "inchi")}')
 
     inchikey_string = 'OKKJLVBELUTLKV-UHFFFAOYSA-N'    # methanol
-    print(f'pKa from Pubchem using InChIKey:\n{pka_lookup_pubchem(inchikey_string, "inchikey")}')
+    # print(f'pKa from Pubchem using InChIKey:\n{pka_lookup_pubchem(inchikey_string, "inchikey")}')

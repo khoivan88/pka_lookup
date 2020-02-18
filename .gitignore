@@ -1,6 +1,7 @@
 # Any hidden folders
 .*/
-# .ipynb_checkpoints/
+.*
+
 
 __pycache__
 
