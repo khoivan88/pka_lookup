@@ -22,7 +22,7 @@ import re
 import pubchempy as pcp  # https://pubchempy.readthedocs.io/en/latest/guide/gettingstarted.html
 import requests
 
-from src.classify import classify
+from classify import classify
 
 
 debug = False
@@ -96,7 +96,7 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
                     exact_match = (identifier == lookup_result[0].get('InChI', False))
                     # print(exact_match)
                 
-                elif identifier_type == 'inchikey' and (identifier not in synonyms):
+                elif identifier_type == 'inchikey':
                     exact_match = (identifier == lookup_result[0].get('InChIKey', False))
 
 
@@ -179,7 +179,7 @@ if __name__ == "__main__":
     # cas_nr = '75-75-2'    # methanesulfonic acid   >>> pKa = -1.86
     # cas_nr = '2950-43-8'    # Hydroxylamine-O-sulfonic acid, no result
 
-    print(pka_lookup_pubchem(cas_nr))
+    # print(pka_lookup_pubchem(cas_nr))
 
 
     # smiles_string = 'C1=CC(=CC=C1F)S'
@@ -197,3 +197,6 @@ if __name__ == "__main__":
     # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(inchi_string)}')
     # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(inchi_string, "smiles")}')    # this function call has wrong 'namespace' (should be 'inchi', not 'smiles'). Therefore, return Pubchem CID even though it is not an exact match.
     # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(inchi_string, "inchi")}')
+
+    inchikey_string = 'OKKJLVBELUTLKV-UHFFFAOYSA-N'    # methanol
+    print(f'pKa from Pubchem using InChIKey:\n{pka_lookup_pubchem(inchikey_string, "inchikey")}')
