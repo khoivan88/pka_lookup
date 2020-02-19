@@ -88,25 +88,45 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
 
             exact_match = True
 
-            synonyms = []
+            # synonyms = []
+            synonyms = pcp.get_synonyms(cid)[0]['Synonym'] or []
+            
+            # Extract CAS number from the list of synonyms
+            returned_cas = ''
+            for synonym in synonyms:
+                cas_nr = re.search(r'^\d{2,7}-\d{2}-\d$', synonym)
+                if cas_nr:
+                    cas_nr = cas_nr.group()
+                    returned_cas = cas_nr
+
+            # lookup_result = []
+            lookup_result = pcp.get_properties(['inchi', 'inchikey',
+                                        'canonical_smiles', 'isomeric_smiles',
+                                        'iupac_name'],
+                                cid)
+
             if identifier_type == 'cas':
                 # To double check if the CAS number is correct:
                 # using pubchem api, get a list of synonym. The result is a list of dict.
                 # choose the first result and check all values for 'Synonym' key:
-                synonyms = pcp.get_synonyms(cid)[0]['Synonym']
+                # synonyms = pcp.get_synonyms(cid)[0]['Synonym']
                 # print('List of synonyms is: {}'.format(synonyms))
                 exact_match = identifier in synonyms
 
             elif identifier_type in ['inchi', 'inchikey']:
                 # Lookup inchi and inchikey returned by Pubchem:
-                lookup_result = pcp.get_properties(['inchi', 'inchikey'], identifier, identifier_type)
+                # lookup_result = pcp.get_properties(['inchi', 'inchikey'], identifier, identifier_type)
+                # lookup_result = pcp.get_properties(['inchi', 'inchikey',
+                #                             'canonical_smiles', 'isomeric_smiles',
+                #                             'iupac_name'],
+                #                     identifier,
+                #                     identifier_type)
                 # print('lookup_result is: {}'.format(lookup_result))
 
                 if identifier_type == 'inchi':
                     # print(lookup_result[0].get('InChI', False))
                     # print(f'input:\n{identifier}')
                     exact_match = (identifier == lookup_result[0].get('InChI', False))
-                    # print(exact_match)
                 
                 elif identifier_type == 'inchikey':
                     exact_match = (identifier == lookup_result[0].get('InChIKey', False))
@@ -134,8 +154,6 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
             
                 # Get the XML tree of <Information> only
                 info_node = tree.find('.//*{http://pubchem.ncbi.nlm.nih.gov/pug_view}Information')
-        #         print(info_node)
-        #         print(list(child for child in info_node.iter()))
 
                 # Get the pKa reference:
                 original_source = info_node.find('{http://pubchem.ncbi.nlm.nih.gov/pug_view}Reference').text
@@ -144,58 +162,43 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
                 pka_result = re.sub(r'^pKa = ', '', pka_result)    # remove 'pka = ' part out of the string answer
                 # print(pka_result)
                 # print(original_source)
-                
-                return {
-                    'input': identifier,
+                # print(lookup_result)
+
+                core_result = {
                     'source': lookup_source,
-                    'Pubchem CID': cid,
+                    'Pubchem CID': str(cid),
                     'pka': pka_result,
                     'reference': original_source
                 }
+                extra_info = lookup_result[0]
+                extra_info.pop('CID', None)    # Remove 'CID': ... from lookup_result[0]
+
+                # Merge 2 dict: https://treyhunner.com/2016/02/how-to-merge-dictionaries-in-python/
+                return {**core_result, **extra_info}
+
             else:
                 raise RuntimeError('pKa not found in Pubchem.')
         
         else: 
             raise RuntimeError('Compound not found in Pubchem.')
 
-    # except ValueError as error:
-    #     if debug:
-    #         traceback_str = ''.join(traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__))
-    #         print(traceback_str)
-    #     # return {
-    #     #     'input': identifier,
-    #     #     'source': lookup_source,
-    #     #     'Pubchem CID': None,
-    #     #     'pka': None,
-    #     #     'reference': None
-    #     # }
-    #     return None
 
     except Exception as error:
         if debug:
             traceback_str = ''.join(traceback.format_exception(etype=type(error), value=error, tb=error.__traceback__))
             print(traceback_str)
 
-        # # Advice user about turning on debug mode for more error printing
-        # print('\n\n(Optional): you can turn on debug mode (more error printing during structure search) using the following command:')
-        # print('python src/pka_lookup_pubchem.py  --debug\n')
-
-        # cid = cid or None
-        # return {
-        #     'input': identifier,
-        #     'source': lookup_source,
-        #     'Pubchem CID': cid,
-        #     'pka': None,
-        #     'reference': None
-        # }
-
         return None
 
 
 if __name__ == "__main__":
-    # cas_nr = '64-19-7'    # acetic acid   >>> pKa = 4.76 at 25 °C
+    import pprint as pp
+    # from pprint import pprint as print
+    print = pp.PrettyPrinter(indent=1, width=80).pprint
+
+    cas_nr = '64-19-7'    # acetic acid   >>> pKa = 4.76 at 25 °C
     # cas_nr = '75-75-2'    # methanesulfonic acid   >>> pKa = -1.86
-    cas_nr = '2950-43-8'    # Hydroxylamine-O-sulfonic acid, no result
+    # cas_nr = '2950-43-8'    # Hydroxylamine-O-sulfonic acid, no result
     # cas_nr = '2687-12-9'
     # print(pka_lookup_pubchem(cas_nr))
     print(pka_lookup_pubchem(cas_nr, 'cas'))
@@ -208,15 +211,18 @@ if __name__ == "__main__":
 
     # # Look up pKa using pka_lookup_pubchem():
     # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(smiles_string)}')
-    # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(smiles_string, "smiles")}')
+    # print('pKa from Pubchem using smiles:')
+    # print(pka_lookup_pubchem(smiles_string, "smiles"))
 
-
-    inchi_string = 'InChI=1S/C10H10N2O/c1-12-10(13)7-9(11-12)8-5-3-2-4-6-8/h2-7,13H,1H3'    # this is NOT exact match from Pubchem return search
+    inchi_string = 'InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H'
+    # inchi_string = 'InChI=1S/C10H10N2O/c1-12-10(13)7-9(11-12)8-5-3-2-4-6-8/h2-7,13H,1H3'    # this is NOT exact match from Pubchem return search
     # inchi_string = 'InChI=1S/C10H10N2O/c1-12-10(13)7-9(11-12)8-5-3-2-4-6-8/h2-7,11H,1H3'    # this is an exact match from Pubchem return search
 
     # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(inchi_string)}')
     # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(inchi_string, "smiles")}')    # this function call has wrong 'namespace' (should be 'inchi', not 'smiles'). Therefore, return Pubchem CID even though it is not an exact match.
-    # print(f'pKa from Pubchem using smiles: {pka_lookup_pubchem(inchi_string, "inchi")}')
+    # print(f'pKa from Pubchem using smiles:')
+    # print(pka_lookup_pubchem(inchi_string, "inchi"))
 
     inchikey_string = 'OKKJLVBELUTLKV-UHFFFAOYSA-N'    # methanol
-    # print(f'pKa from Pubchem using InChIKey:\n{pka_lookup_pubchem(inchikey_string, "inchikey")}')
+    # print(f'pKa from Pubchem using InChIKey:')
+    # print(pka_lookup_pubchem(inchikey_string, "inchikey"))
