@@ -13,12 +13,13 @@ Change notes:
 
 """
 
+import re
 import sys
 import traceback
 import xml.etree.ElementTree as ET
 from typing import Optional
-import re
 
+import pandas as pd
 import pubchempy as pcp  # https://pubchempy.readthedocs.io/en/latest/guide/gettingstarted.html
 import requests
 
@@ -34,8 +35,8 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
     if len(sys.argv) == 2 and sys.argv[1] in ['--debug=True', '--debug=true', '--debug', '-d']:
         debug = True
 
-    if debug:
-        print(f'In DEBUG mode: {debug}')
+    # if debug:
+    #     print(f'In DEBUG mode: {debug}')
 
     # Identify lookup source (Pubchem in this case)
     lookup_source = 'Pubchem'
@@ -98,6 +99,7 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
                 if cas_nr:
                     cas_nr = cas_nr.group()
                     returned_cas = cas_nr
+                    break
 
             # lookup_result = []
             lookup_result = pcp.get_properties(['inchi', 'inchikey',
@@ -109,19 +111,9 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
                 # To double check if the CAS number is correct:
                 # using pubchem api, get a list of synonym. The result is a list of dict.
                 # choose the first result and check all values for 'Synonym' key:
-                # synonyms = pcp.get_synonyms(cid)[0]['Synonym']
-                # print('List of synonyms is: {}'.format(synonyms))
                 exact_match = identifier in synonyms
 
             elif identifier_type in ['inchi', 'inchikey']:
-                # Lookup inchi and inchikey returned by Pubchem:
-                # lookup_result = pcp.get_properties(['inchi', 'inchikey'], identifier, identifier_type)
-                # lookup_result = pcp.get_properties(['inchi', 'inchikey',
-                #                             'canonical_smiles', 'isomeric_smiles',
-                #                             'iupac_name'],
-                #                     identifier,
-                #                     identifier_type)
-                # print('lookup_result is: {}'.format(lookup_result))
 
                 if identifier_type == 'inchi':
                     # print(lookup_result[0].get('InChI', False))
@@ -130,7 +122,6 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
                 
                 elif identifier_type == 'inchikey':
                     exact_match = (identifier == lookup_result[0].get('InChIKey', False))
-
 
             if not exact_match:
                 if debug:
@@ -166,22 +157,31 @@ def pka_lookup_pubchem(identifier, namespace=None, domain='compound') -> Optiona
 
                 core_result = {
                     'source': lookup_source,
-                    'Pubchem CID': str(cid),
-                    'pka': pka_result,
-                    'reference': original_source
+                    'Pubchem_CID': str(cid),
+                    'pKa': pka_result,
+                    'reference': original_source,
+                    'Substance_CASRN': returned_cas,
                 }
                 extra_info = lookup_result[0]
                 extra_info.pop('CID', None)    # Remove 'CID': ... from lookup_result[0]
 
                 # Merge 2 dict: https://treyhunner.com/2016/02/how-to-merge-dictionaries-in-python/
-                return {**core_result, **extra_info}
+                result = {**core_result, **extra_info}
+                # Rename some keys in the dict
+                s = pd.Series(result)
+                s = s.rename({
+                    'CanonicalSMILES': 'Canonical_SMILES',
+                    'IsomericSMILES': 'Isomeric_SMILES',
+                    'IUPACName': 'IUPAC_Name'
+                })
+                result = s.to_dict()            
+                return result
 
             else:
                 raise RuntimeError('pKa not found in Pubchem.')
-        
-        else: 
+    
+        else:
             raise RuntimeError('Compound not found in Pubchem.')
-
 
     except Exception as error:
         if debug:
