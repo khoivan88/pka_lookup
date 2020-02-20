@@ -1,3 +1,7 @@
+[![Python 3](https://pyup.io/repos/github/khoivan88/pka_lookup/python-3-shield.svg)](https://pyup.io/repos/github/khoivan88/pka_lookup/)
+[![Updates](https://pyup.io/repos/github/khoivan88/pka_lookup/shield.svg)](https://pyup.io/repos/github/khoivan88/pka_lookup/)
+
+
 ## Overview:
 
 - Python script to lookup pKa value from local database (~7,300 records) and from Pubchem using: CAS number, SMILES, InChI, InChIKey, IUPAC name.
