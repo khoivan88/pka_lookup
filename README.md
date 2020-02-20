@@ -210,7 +210,7 @@ Searching for pKa of structure with identifier: C1=CC=C(C=C1)O
 When getting None as the result, you can turn on debug mode by adding suffix `-d` to your python running code to get more info. For example:
 ```bash
 # Running 'src/pka_lookup_pubchem.py' for CAS: 75-46-7 (trifluoromethane)
-python src/pka_lookup_pubchem.py -d
+$ python src/pka_lookup_pubchem.py -d
 
 Searching for pKa of structure with identifier: 75-46-7
 Traceback (most recent call last):
