@@ -65,7 +65,7 @@ def search_pka(identifier: str, database) -> Optional[List[Tuple[Dict]]]:
 
     try:
         # Search local DB first:
-        db_result = search_db(identifier=identifier, database=db)
+        db_result = search_db(identifier=identifier, database=database)
 
         if db_result:
             # return db_result
@@ -152,17 +152,22 @@ def search_db(identifier: str, database) -> Optional[List[Tuple[Dict]]]:
 
 if __name__ == "__main__":
     # Access local tinyDB
-    db = TinyDB('data/tinydb_db.json', 
+    db = TinyDB('src/data/tinydb_db.json', 
                 sort_keys=True, 
                 indent=4, 
                 storage=CachingMiddleware(JSONStorage))    # Using caching for faster performance 
     
     try:
         identifiers = [
-            '64-19-7',    # acetic acid   >>> pKa = 4.76 at 25 °C
-            '2950-43-8',    # Hydroxylamine-O-sulfonic acid, no result     
-            'InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H',    # thiophenol
-            'C1=CC=C(C=C1)O',    # phenol   >>> pKa = 9.9
+            # '64-19-7',    # acetic acid   >>> pKa = 4.76 at 25 °C
+            # '2950-43-8',    # Hydroxylamine-O-sulfonic acid, no result     
+            # 'InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H',    # thiophenol
+            # 'C1=CC=C(C=C1)O',    # phenol   >>> pKa = 9.9
+            '596-09-8',
+            '141-78-6',
+            '110-82-7',
+            '67-63-0',
+            '75-09-2',
         ]
 
         for identifier in identifiers:
