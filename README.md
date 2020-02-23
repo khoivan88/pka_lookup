@@ -2,14 +2,14 @@
 [![Updates](https://pyup.io/repos/github/khoivan88/pka_lookup/shield.svg)](https://pyup.io/repos/github/khoivan88/pka_lookup/)
 
 
-## Overview:
+## Overview
 
 - Python script to lookup pKa value from local database (~7,300 records) and from Pubchem using: CAS number, SMILES, InChI, InChIKey, IUPAC name.
 - Most of the records (~6,900) in the current database is from [JCheminform Mansouri et. al.](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-019-0384-1)
 - The data is provide in this repo [here](src/data).
 - If record is found on Pubchem but not in local database, the record will be added into the local database for faster access in the future
 
-## Technology:
+## Requirements
 
 - Python 3.5+
 - Python libraries:
@@ -18,7 +18,8 @@
   - pandas
   - tinyDB
 
-## Example usage:
+
+## Example usage
 
 ### For searching pKa from local database and Pubchem:
 
@@ -204,6 +205,25 @@ Searching for pKa of structure with identifier: C1=CC=C(C=C1)O
 ```
 
 - [More examples for pka_lookup_pubchem.py](examples/using_pka_lookup_pubchem.ipynb).
+
+### Debug mode:
+When getting None as the result, you can turn on debug mode by adding suffix `-d` to your python running code to get more info. For example:
+```bash
+# Running 'src/pka_lookup_pubchem.py' for CAS: 75-46-7 (trifluoromethane)
+$ python src/pka_lookup_pubchem.py -d
+
+Searching for pKa of structure with identifier: 75-46-7
+Traceback (most recent call last):
+  File "<path-to-file>\src\pka_lookup_pubchem.py", line 181, in pka_lookup_pubchem
+    raise RuntimeError('pKa not found in Pubchem.')
+RuntimeError: pKa not found in Pubchem.
+```
+
+- Errors include:
+  - `RuntimeError('pKa not found in Pubchem.')`: compound exists on Pubchem but there is no pKa value.
+  - `RuntimeError('Compound not found in Pubchem.')`: compound cannot be found in Pubchem.
+  - `ValueError('This is not an exact match on Pubchem!')`: when searching on Pubchem return some result but it is not an exact match.
+
 
 ## Changelog:
 
