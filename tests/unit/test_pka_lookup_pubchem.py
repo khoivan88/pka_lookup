@@ -9,74 +9,80 @@ from src.pka_lookup_pubchem import pka_lookup_pubchem
     'input, expect', [
         ('64-19-7', {
             'source': 'Pubchem',
-            'Pubchem CID': '176',
-            'pka': '4.76 at 25 °C',
+            'Pubchem_CID': '176',
+            'Substance_CASRN': '64-19-7',
+            'pKa': '4.76 at 25 °C',
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 989',
-            'CanonicalSMILES': 'CC(=O)O', 
-            'IsomericSMILES': 'CC(=O)O', 
+            'Canonical_SMILES': 'CC(=O)O', 
+            'Isomeric_SMILES': 'CC(=O)O', 
             'InChI': 'InChI=1S/C2H4O2/c1-2(3)4/h1H3,(H,3,4)', 
             'InChIKey': 'QTBSBXVTEAMEQO-UHFFFAOYSA-N', 
-            'IUPACName': 'acetic acid'
+            'IUPAC_Name': 'acetic acid'
             }
         ),
         ('75-75-2', {
             'source': 'Pubchem',
-            'Pubchem CID': '6395',
-            'pka': '-1.86',
+            'Pubchem_CID': '6395',
+            'Substance_CASRN': '75-75-2',
+            'pKa': '-1.86',
             'reference': 'Serjeant ED, Dempsey B; IUPAC Chemical Data Series No. 23. NY,NY: Pergamon Press p. 12 (1979)',
-            'CanonicalSMILES': 'CS(=O)(=O)O', 
-            'IsomericSMILES': 'CS(=O)(=O)O', 
+            'Canonical_SMILES': 'CS(=O)(=O)O', 
+            'Isomeric_SMILES': 'CS(=O)(=O)O', 
             'InChI': 'InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)', 
             'InChIKey': 'AFVFQIVMOAPDHO-UHFFFAOYSA-N', 
-            'IUPACName': 'methanesulfonic acid'
+            'IUPAC_Name': 'methanesulfonic acid'
             }
         ),
         ('OC1=CC=CC=C1', {
             'source': 'Pubchem',
-            'Pubchem CID': '996',
-            'pka': '9.99 @ 25 °C',
+            'Pubchem_CID': '996',
+            'Substance_CASRN': '108-95-2',
+            'pKa': '9.99 @ 25 °C',
             'reference': 'Lide, D.R. (ed.). CRC Handbook of Chemistry and Physics. 83rd ed. Boca Raton, Fl: CRC Press Inc., 2002-2003., p. 8-49',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)O', 
-            'IsomericSMILES': 'C1=CC=C(C=C1)O', 
+            'Canonical_SMILES': 'C1=CC=C(C=C1)O', 
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)O', 
             'InChI': 'InChI=1S/C6H6O/c7-6-4-2-1-3-5-6/h1-5,7H', 
             'InChIKey': 'ISWSIDIOOBJBQZ-UHFFFAOYSA-N', 
-            'IUPACName': 'phenol'
+            'IUPAC_Name': 'phenol'
             }
         ),
         ('C1=CC=C(C=C1)O', {
             'source': 'Pubchem',
-            'Pubchem CID': '996',
-            'pka': '9.99 @ 25 °C',
+            'Pubchem_CID': '996',
+            'Substance_CASRN': '108-95-2',
+            'pKa': '9.99 @ 25 °C',
             'reference': 'Lide, D.R. (ed.). CRC Handbook of Chemistry and Physics. 83rd ed. Boca Raton, Fl: CRC Press Inc., 2002-2003., p. 8-49',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)O', 
-            'IsomericSMILES': 'C1=CC=C(C=C1)O', 
+            'Canonical_SMILES': 'C1=CC=C(C=C1)O', 
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)O', 
             'InChI': 'InChI=1S/C6H6O/c7-6-4-2-1-3-5-6/h1-5,7H', 
             'InChIKey': 'ISWSIDIOOBJBQZ-UHFFFAOYSA-N', 
-            'IUPACName': 'phenol'
+            'IUPAC_Name': 'phenol'
             }
         ),
         ('InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H', {
             'source': 'Pubchem', 
-            'Pubchem CID': '7969', 
-            'pka': '6.62', 
+            'Pubchem_CID': '7969', 
+            'Substance_CASRN': '108-98-5',
+            'pKa': '6.62', 
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 165',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)S',
-            'IUPACName': 'benzenethiol',
+            'Canonical_SMILES': 'C1=CC=C(C=C1)S',
+            'IUPAC_Name': 'benzenethiol',
             'InChI': 'InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H',
             'InChIKey': 'RMVRSNDYEFQCLF-UHFFFAOYSA-N',
-            'IsomericSMILES': 'C1=CC=C(C=C1)S',            
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)S',            
             }
         ),
         ('OKKJLVBELUTLKV-UHFFFAOYSA-N', {
             'source': 'Pubchem', 
-            'Pubchem CID': '887', 
-            'pka': '15.3', 
+            'Pubchem_CID': '887', 
+            'Substance_CASRN': '67-56-1',
+            'pKa': '15.3', 
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 989',
-            'CanonicalSMILES': 'CO', 
-            'IsomericSMILES': 'CO', 
+            'Canonical_SMILES': 'CO', 
+            'Isomeric_SMILES': 'CO', 
             'InChI': 'InChI=1S/CH4O/c1-2/h2H,1H3', 
             'InChIKey': 'OKKJLVBELUTLKV-UHFFFAOYSA-N', 
-            'IUPACName': 'methanol'
+            'IUPAC_Name': 'methanol'
             }
         ),
     ]
@@ -89,74 +95,80 @@ def test_pka_lookup_pubchem_nonamespace(input, expect):
     'input, namespace, expect', [
         ('64-19-7', 'cas', {
             'source': 'Pubchem',
-            'Pubchem CID': '176',
-            'pka': '4.76 at 25 °C',
+            'Pubchem_CID': '176',
+            'Substance_CASRN': '64-19-7',
+            'pKa': '4.76 at 25 °C',
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 989',
-            'CanonicalSMILES': 'CC(=O)O', 
-            'IsomericSMILES': 'CC(=O)O', 
+            'Canonical_SMILES': 'CC(=O)O', 
+            'Isomeric_SMILES': 'CC(=O)O', 
             'InChI': 'InChI=1S/C2H4O2/c1-2(3)4/h1H3,(H,3,4)', 
             'InChIKey': 'QTBSBXVTEAMEQO-UHFFFAOYSA-N', 
-            'IUPACName': 'acetic acid'
+            'IUPAC_Name': 'acetic acid'
             }
         ),
         ('75-75-2', 'cas', {
             'source': 'Pubchem',
-            'Pubchem CID': '6395',
-            'pka': '-1.86',
+            'Pubchem_CID': '6395',
+            'Substance_CASRN': '75-75-2',
+            'pKa': '-1.86',
             'reference': 'Serjeant ED, Dempsey B; IUPAC Chemical Data Series No. 23. NY,NY: Pergamon Press p. 12 (1979)',
-            'CanonicalSMILES': 'CS(=O)(=O)O', 
-            'IsomericSMILES': 'CS(=O)(=O)O', 
+            'Canonical_SMILES': 'CS(=O)(=O)O', 
+            'Isomeric_SMILES': 'CS(=O)(=O)O', 
             'InChI': 'InChI=1S/CH4O3S/c1-5(2,3)4/h1H3,(H,2,3,4)', 
             'InChIKey': 'AFVFQIVMOAPDHO-UHFFFAOYSA-N', 
-            'IUPACName': 'methanesulfonic acid'
+            'IUPAC_Name': 'methanesulfonic acid'
             }
         ),
         ('OC1=CC=CC=C1', 'smiles', {
             'source': 'Pubchem',
-            'Pubchem CID': '996',
-            'pka': '9.99 @ 25 °C',
+            'Pubchem_CID': '996',
+            'Substance_CASRN': '108-95-2',
+            'pKa': '9.99 @ 25 °C',
             'reference': 'Lide, D.R. (ed.). CRC Handbook of Chemistry and Physics. 83rd ed. Boca Raton, Fl: CRC Press Inc., 2002-2003., p. 8-49',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)O', 
-            'IsomericSMILES': 'C1=CC=C(C=C1)O', 
+            'Canonical_SMILES': 'C1=CC=C(C=C1)O', 
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)O', 
             'InChI': 'InChI=1S/C6H6O/c7-6-4-2-1-3-5-6/h1-5,7H', 
             'InChIKey': 'ISWSIDIOOBJBQZ-UHFFFAOYSA-N', 
-            'IUPACName': 'phenol'
+            'IUPAC_Name': 'phenol'
             }
         ),
         ('C1=CC=C(C=C1)O', 'smiles', {
             'source': 'Pubchem',
-            'Pubchem CID': '996',
-            'pka': '9.99 @ 25 °C',
+            'Pubchem_CID': '996',
+            'Substance_CASRN': '108-95-2',
+            'pKa': '9.99 @ 25 °C',
             'reference': 'Lide, D.R. (ed.). CRC Handbook of Chemistry and Physics. 83rd ed. Boca Raton, Fl: CRC Press Inc., 2002-2003., p. 8-49',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)O', 
-            'IsomericSMILES': 'C1=CC=C(C=C1)O', 
+            'Canonical_SMILES': 'C1=CC=C(C=C1)O', 
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)O', 
             'InChI': 'InChI=1S/C6H6O/c7-6-4-2-1-3-5-6/h1-5,7H', 
             'InChIKey': 'ISWSIDIOOBJBQZ-UHFFFAOYSA-N', 
-            'IUPACName': 'phenol'
+            'IUPAC_Name': 'phenol'
             }
         ),
         ('InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H', 'inchi', {
             'source': 'Pubchem', 
-            'Pubchem CID': '7969', 
-            'pka': '6.62', 
+            'Pubchem_CID': '7969', 
+            'Substance_CASRN': '108-98-5',
+            'pKa': '6.62', 
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 165',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)S',
-            'IUPACName': 'benzenethiol',
+            'Canonical_SMILES': 'C1=CC=C(C=C1)S',
+            'IUPAC_Name': 'benzenethiol',
             'InChI': 'InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H',
             'InChIKey': 'RMVRSNDYEFQCLF-UHFFFAOYSA-N',
-            'IsomericSMILES': 'C1=CC=C(C=C1)S',            
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)S',            
             }
         ),
         ('OKKJLVBELUTLKV-UHFFFAOYSA-N', 'inchikey', {
             'source': 'Pubchem', 
-            'Pubchem CID': '887', 
-            'pka': '15.3', 
+            'Pubchem_CID': '887', 
+            'Substance_CASRN': '67-56-1',
+            'pKa': '15.3', 
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 989',
-            'CanonicalSMILES': 'CO', 
-            'IsomericSMILES': 'CO', 
+            'Canonical_SMILES': 'CO', 
+            'Isomeric_SMILES': 'CO', 
             'InChI': 'InChI=1S/CH4O/c1-2/h2H,1H3', 
             'InChIKey': 'OKKJLVBELUTLKV-UHFFFAOYSA-N', 
-            'IUPACName': 'methanol'
+            'IUPAC_Name': 'methanol'
             }
         ),
     ]
@@ -184,27 +196,29 @@ def set_debug(monkeypatch):
         ),
         ('OC1=CC=CC=C1', {
             'source': 'Pubchem',
-            'Pubchem CID': '996',
-            'pka': '9.99 @ 25 °C',
+            'Pubchem_CID': '996',
+            'Substance_CASRN': '108-95-2',
+            'pKa': '9.99 @ 25 °C',
             'reference': 'Lide, D.R. (ed.). CRC Handbook of Chemistry and Physics. 83rd ed. Boca Raton, Fl: CRC Press Inc., 2002-2003., p. 8-49',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)O', 
-            'IsomericSMILES': 'C1=CC=C(C=C1)O', 
+            'Canonical_SMILES': 'C1=CC=C(C=C1)O', 
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)O', 
             'InChI': 'InChI=1S/C6H6O/c7-6-4-2-1-3-5-6/h1-5,7H', 
             'InChIKey': 'ISWSIDIOOBJBQZ-UHFFFAOYSA-N', 
-            'IUPACName': 'phenol'
+            'IUPAC_Name': 'phenol'
             }, 
             ''
         ),
         ('InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H', {
             'source': 'Pubchem', 
-            'Pubchem CID': '7969', 
-            'pka': '6.62', 
+            'Pubchem_CID': '7969', 
+            'Substance_CASRN': '108-98-5',
+            'pKa': '6.62', 
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 165',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)S',
-            'IUPACName': 'benzenethiol',
+            'Canonical_SMILES': 'C1=CC=C(C=C1)S',
+            'IUPAC_Name': 'benzenethiol',
             'InChI': 'InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H',
             'InChIKey': 'RMVRSNDYEFQCLF-UHFFFAOYSA-N',
-            'IsomericSMILES': 'C1=CC=C(C=C1)S',            
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)S',            
             },
             ''
         ),
@@ -221,14 +235,15 @@ def set_debug(monkeypatch):
         ('OKKJLVBELUTLKV-UHFFFAOYSA-N', 
             {
             'source': 'Pubchem', 
-            'Pubchem CID': '887', 
-            'pka': '15.3', 
+            'Pubchem_CID': '887', 
+            'Substance_CASRN': '67-56-1',
+            'pKa': '15.3', 
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 989',
-            'CanonicalSMILES': 'CO', 
-            'IsomericSMILES': 'CO', 
+            'Canonical_SMILES': 'CO', 
+            'Isomeric_SMILES': 'CO', 
             'InChI': 'InChI=1S/CH4O/c1-2/h2H,1H3', 
             'InChIKey': 'OKKJLVBELUTLKV-UHFFFAOYSA-N', 
-            'IUPACName': 'methanol'
+            'IUPAC_Name': 'methanol'
             },
             ''
         ),
@@ -259,28 +274,30 @@ def test_pka_lookup_pubchem_nonamespace_debugmode(set_debug, capsys, input, expe
         ),
         ('OC1=CC=CC=C1', 'smiles', {
             'source': 'Pubchem',
-            'Pubchem CID': '996',
-            'pka': '9.99 @ 25 °C',
+            'Pubchem_CID': '996',
+            'Substance_CASRN': '108-95-2',
+            'pKa': '9.99 @ 25 °C',
             'reference': 'Lide, D.R. (ed.). CRC Handbook of Chemistry and Physics. 83rd ed. Boca Raton, Fl: CRC Press Inc., 2002-2003., p. 8-49',
-            'CanonicalSMILES': 'C1=CC=C(C=C1)O', 
-            'IsomericSMILES': 'C1=CC=C(C=C1)O', 
+            'Canonical_SMILES': 'C1=CC=C(C=C1)O', 
+            'Isomeric_SMILES': 'C1=CC=C(C=C1)O', 
             'InChI': 'InChI=1S/C6H6O/c7-6-4-2-1-3-5-6/h1-5,7H', 
             'InChIKey': 'ISWSIDIOOBJBQZ-UHFFFAOYSA-N', 
-            'IUPACName': 'phenol'
+            'IUPAC_Name': 'phenol'
             }, 
             ''
         ),
         ('InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H', 'inchi',
             {
                 'source': 'Pubchem', 
-                'Pubchem CID': '7969', 
-                'pka': '6.62', 
+                'Pubchem_CID': '7969', 
+                'Substance_CASRN': '108-98-5',
+                'pKa': '6.62', 
                 'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 165',
-                'CanonicalSMILES': 'C1=CC=C(C=C1)S',
-                'IUPACName': 'benzenethiol',
+                'Canonical_SMILES': 'C1=CC=C(C=C1)S',
+                'IUPAC_Name': 'benzenethiol',
                 'InChI': 'InChI=1S/C6H6S/c7-6-4-2-1-3-5-6/h1-5,7H',
                 'InChIKey': 'RMVRSNDYEFQCLF-UHFFFAOYSA-N',
-                'IsomericSMILES': 'C1=CC=C(C=C1)S',            
+                'Isomeric_SMILES': 'C1=CC=C(C=C1)S',            
             },
             ''
         ),
@@ -298,14 +315,15 @@ def test_pka_lookup_pubchem_nonamespace_debugmode(set_debug, capsys, input, expe
         ),
         ('OKKJLVBELUTLKV-UHFFFAOYSA-N', 'inchikey', {
             'source': 'Pubchem', 
-            'Pubchem CID': '887', 
-            'pka': '15.3', 
+            'Pubchem_CID': '887', 
+            'Substance_CASRN': '67-56-1',
+            'pKa': '15.3', 
             'reference': 'Serjeant, E.P., Dempsey B.; Ionisation Constants of Organic  Acids in Aqueous Solution. International Union of Pure and  Applied Chemistry (IUPAC). IUPAC Chemical Data Series No.  23, 1979. New York, New York: Pergamon Press, Inc., p. 989',
-            'CanonicalSMILES': 'CO', 
-            'IsomericSMILES': 'CO', 
+            'Canonical_SMILES': 'CO', 
+            'Isomeric_SMILES': 'CO', 
             'InChI': 'InChI=1S/CH4O/c1-2/h2H,1H3', 
             'InChIKey': 'OKKJLVBELUTLKV-UHFFFAOYSA-N', 
-            'IUPACName': 'methanol'
+            'IUPAC_Name': 'methanol'
             },
             ''
         ),
