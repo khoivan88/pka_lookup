@@ -1,5 +1,8 @@
 [![Python 3](https://pyup.io/repos/github/khoivan88/pka_lookup/python-3-shield.svg)](https://pyup.io/repos/github/khoivan88/pka_lookup/)
 [![Updates](https://pyup.io/repos/github/khoivan88/pka_lookup/shield.svg)](https://pyup.io/repos/github/khoivan88/pka_lookup/)
+[![codecov](https://codecov.io/gh/khoivan88/pka_lookup/branch/master/graph/badge.svg)](https://codecov.io/gh/khoivan88/pka_lookup)
+[![python version](https://img.shields.io/badge/python-v3.6%2B-blue)]()
+[![tested platforms](https://img.shields.io/badge/tested%20platform-win%20%7C%20osx%20%7C%20ubuntu-lightgrey)]()
 
 
 ## Overview
@@ -11,7 +14,7 @@
 
 ## Requirements
 
-- Python 3.5+
+- Python 3.6+
 - Python libraries:
   - PubChemPy
   - requests
