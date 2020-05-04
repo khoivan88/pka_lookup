@@ -4,13 +4,19 @@
 [![python version](https://img.shields.io/badge/python-v3.6%2B-blue)]()
 [![tested platforms](https://img.shields.io/badge/tested%20platform-win%20%7C%20osx%20%7C%20ubuntu-lightgrey)]()
 
+## Table of content
+
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Example usage](#example-usage)
+- [Changelog](#changelog)
 
 ## Overview
 
 - Python script to lookup pKa value from local database (~7,300 records) and from Pubchem using: CAS number, SMILES, InChI, InChIKey, IUPAC name.
 - Most of the records (~6,900) in the current database is from [JCheminform Mansouri et. al.](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-019-0384-1)
 - The data is provide in this repo [here](src/data).
-- If record is found on Pubchem but not in local database, the record will be added into the local database for faster access in the future
+- If record is found on Pubchem but not in local database, the record will be **added into the local database for faster access in the future**
 
 ## Requirements
 
