@@ -1,4 +1,4 @@
 PubChemPy==1.0.4
 requests==2.23.0
 pandas>=0.25
-tinydb==4.0.0.post1
+tinydb==4.1.0
